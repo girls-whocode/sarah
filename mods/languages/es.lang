@@ -1,0 +1,351 @@
+# Configuración
+lang_version="1.0"
+lang_name="Inglés Americano"
+lang_author="Jessica Brown"
+lang_update="2023-12-13"
+lang_unicode="UTF8"
+
+# Idioma
+lang_log_level="Nivel de registro asignado a"
+lang_log_exit="Saliendo"
+lang_yes="sí"
+lang_no="no"
+lang_create_config="Creando archivo de configuración"
+lang_create_load="Archivo de configuración creado y cargado"
+
+lang_title_mem="memoria"
+lang_title_swap="intercambio"
+lang_mem_active_status="activo"
+lang_mem_value_used="usado"
+lang_mem_value_available="disponible"
+lang_mem_value_cached="en caché"
+lang_mem_value_free="libre"
+
+lang_cpu_action_send="¡Enviando la señal"
+lang_cpu_action_toPID="al PID!"
+lang_cpu_up_title="arriba"
+
+lang_processes_title_close="cerrar"
+lang_processes_title_status="Estado"
+lang_processes_title_elapsed="Transcurrido"
+lang_processes_title_parent="Padre"
+lang_processes_title_user="Usuario"
+lang_processes_title_threads="Hilos"
+lang_processes_title_memory="Memoria"
+lang_processes_option_select="seleccionar"
+lang_processes_option_info="información"
+
+lang_net_title_byte="Byte"
+lang_net_title_bit="Bit"
+lang_net_title_total="Total"
+
+lang_title_disk="discos"
+lang_title_download="Descarga"
+lang_title_upload="Carga"
+
+# Estado de error de registro
+lang_log_critical_fail="FALLO CRÍTICO"
+lang_log_critical="CRÍTICO"
+lang_log_error="ERROR"
+lang_log_warning="ADVERTENCIA"
+lang_log_notice="AVIS0"
+lang_log_info="INFORMACIÓN"
+lang_log_debug="DEPURACIÓN"
+lang_log_success="ÉXITO"
+
+# Mensajes de depuración
+lang_dbg_lang="Idioma establecido en "
+utf8_debug="Se encontró y cargó la configuración UTF-8"
+utf8_changed_debug="SARAH cambió su configuración actual a UTF-8"
+
+# Mensajes de error
+config_error="ERROR: No se pudo configurar el directorio de configuración"
+utf8_error="ERROR: No se encontró una configuración UTF-8"
+gnu_error="ERROR: Faltan las utilidades básicas de GNU"
+gnu_sed_error="ERROR: Falta GNU sed"
+log_create_error="ERROR: No se pudo crear el archivo de registro"
+python_error="ERROR: Falta python3"
+python_module_error="ERROR: Falta el módulo psutil de python3"
+temp_dir_create_error="ERROR: Error al configurar el directorio temporal para el script de psutil"
+
+# Mensajes de terminal
+lang_sarah_welcome="Bienvenido y gracias por usar SARAH, el asistente remoto"
+lang_ssh_fail="Fallo de conexión SSH en"
+lang_sudo_fail="Fallo de acceso sudo en"
+lang_connection_success="Conexión exitosa en"
+
+# Mensajes Generales de Pantalla
+lang_psutil_coprocess="Creando coproceso de psutil..."
+lang_tool_status="Comprobando herramientas disponibles..."
+lang_cpu_status="Comprobando CPU..."
+lang_size_calc="Calculando tamaños..."
+lang_cpu_runner="Ejecutando inicialización de la colección de CPU..."
+lang_mem_runner="Ejecutando inicialización de la colección de memoria..."
+lang_net_status="Comprobando dispositivos de red..."
+lang_update_check="Comprobando actualizaciones..."
+lang_update_available="¡disponible!"
+lang_sarah_update="Actualización de SARAH"
+lang_sarah_update_msg="¡Nueva versión de SARAH disponible!\nVersión actual:"
+lang_new_update="Nueva versión"
+lang_download="Descargar en"
+lang_version="Versión"
+lang_color_generate="Generando colores para el tema..."
+lang_process_collection="Ejecutando inicialización de la colección de procesos..."
+lang_draw_screen="Dibujando pantalla..."
+
+# Ayuda
+lang_help_key_title="Tecla"
+lang_help_description_title="Descripción"
+lang_help_menu="Muestra menú principal."
+lang_help_options="Muestra opciones."
+lang_help_window="Muestra esta ventana."
+lang_help_quit="Sale del programa."
+lang_help_selected="Seleccionado"
+lang_help_ms="Sumar/Restar 100ms al/del temporizador de actualización."
+lang_help_process="Seleccionar en la lista de procesos."
+lang_help_details="Mostrar información detallada del proceso seleccionado."
+lang_help_jump_page="Ir a la página 1 en la lista de procesos."
+lang_help_jump_fl_page="Ir a la primera o última página en la lista de procesos."
+lang_help_sort_col="Seleccionar columna de ordenamiento anterior/siguiente."
+lang_help_np_net_device="Seleccionar dispositivo de red anterior/siguiente."
+lang_help_toggle_tree="Alternar vista de árbol de procesos."
+lang_help_rev_sort="Invertir el orden de clasificación en la caja de procesos."
+lang_help_input_string="Ingresar una cadena para filtrar procesos."
+lang_help_clear="Borrar cualquier filtro ingresado."
+lang_help_terminate="Terminar el proceso seleccionado con SIGTERM - 15."
+lang_help_kill="Matar el proceso seleccionado con SIGKILL - 9."
+lang_help_interrupt="Interrumpir el proceso seleccionado con SIGINT - 2."
+lang_help_bug_report="Para informes de errores y actualizaciones del proyecto, visite:"
+
+lang_options_title="opciones"
+
+desc_color_theme=(
+    "Configura el tema de color de SARAH."
+    " "
+    "Selecciona entre archivos de temas ubicados en"
+    "\"\$HOME/.config/bashtop/themes\" y"
+    "\"\$HOME/.config/bashtop/user_themes\"."
+    " "
+    "Los temas de usuario están precedidos por \"*\"."
+    "\"Predeterminado\" para el valor incorporado."
+    " "
+)
+
+if [[ -z $curled ]]; then 
+    desc_color_theme+=("Obtén más temas en:" "https://github.com/girls-whocode/sar") 
+else 
+    desc_color_theme+=("\e[1mPresiona ENTER para descargar los temas predeterminados." "Sobrescribirá los cambios realizados en los temas predeterminados" "si no se copian a la carpeta user_themes."); 
+fi
+
+desc_language_select=(
+    "Configura el idioma de SARAH."
+    " "
+    "Usa las teclas de flecha para seleccionar el idioma."
+)
+desc_default_editor=(
+    "Configura el editor predeterminado para editar el archivo de configuración."
+    " "
+    "Usa las teclas de flecha para seleccionar el editor."
+)
+
+desc_color_output=(
+    "Configura la salida de color."
+    " "
+    "Verdadero o falso."
+)
+
+desc_ssh_username=(
+    "Configura el nombre de usuario para las conexiones SSH."
+    " "
+    "Cadena vacía para desactivar."
+)
+
+desc_ssh_identity=(
+    "Configura el archivo de identidad para las conexiones SSH."
+    " "
+    "Cadena vacía para desactivar."
+)
+
+desc_ssh_defult_port=(
+    "Configura el puerto predeterminado para las conexiones SSH."
+    " "
+    "La cadena vacía se establece en el puerto 22 de forma predeterminada."
+)
+
+desc_update_ms=(
+    "Tiempo de actualización en milisegundos."
+    "Recomendado 2000 ms o más para obtener mejores tiempos de muestreo"
+    "para los gráficos."
+    " "
+    "Aumenta automáticamente si se establece por debajo del tiempo de procesamiento"
+    "interno de los bucles."
+    " "
+    "Valor máximo: 86400000 ms = 24 horas."
+)
+
+desc_use_psutil=(
+    "Habilita el uso del módulo psutil de Python 3 para"
+    "la recopilación de datos. Predeterminado en sistemas no Linux."
+    " "
+    "El programa se reiniciará automáticamente al cambiar"
+    "esta configuración para comprobar la compatibilidad."
+    " "
+    "Verdadero o falso."
+    " "
+    "Solo se puede desactivar en sistemas Linux."
+)
+
+desc_proc_sorting=(
+    "Ordenamiento de procesos."
+    "Los valores válidos son \"pid\", \"program\", \"arguments\","
+    "\"threads\", \"user\", \"memory\", \"cpu lazy\""
+    "\"cpu responsive\" y \"tree\"."
+    " "
+    "\"cpu lazy\" muestra el uso de la CPU a lo largo de la vida"
+    "de un proceso."
+    " "
+    "\"cpu responsive\" actualiza el ordenamiento directamente a un"
+    "costo de tiempo de CPU (a menos que se use psutil)."
+    " "
+    "\"tree\" muestra una estructura de árbol de los procesos en ejecución."
+    "(no disponible con psutil)"
+)
+
+desc_proc_tree=(
+    "Vista de árbol de procesos."
+    " "
+    "Establece verdadero para mostrar los procesos agrupados por padres,"
+    "con líneas dibujadas entre el proceso padre e hijo."
+    " "
+    "Verdadero o falso."
+)
+
+desc_check_temp=(
+    "Comprobar la temperatura de la CPU."
+    " "
+    "Verdadero o falso."
+    " "
+    "Solo funciona si los comandos sensors, vcgencmd u osx-cpu-temp"
+    "están disponibles."
+)
+
+desc_draw_clock=(
+    "Dibuja un reloj en la parte superior de la pantalla."
+    " "
+    "Formato según strftime, cadena vacía para desactivar."
+    " "
+    "\"%X\" hora HH:MM:SS en el formato local"
+    "\"%H\" hora en formato 24h, \"%I\" hora en formato 12h"
+    "\"%M\" minutos, \"%S\" segundos"
+    "\"%d\" día, \"%m\" mes, \"%y\" año"
+)
+
+desc_background_update=(
+    "Actualiza la interfaz principal cuando se muestran menús."
+    " "
+    "Verdadero o falso."
+    " "
+    "Establece esto en falso si los menús parpadean demasiado"
+    "para una experiencia cómoda."
+)
+
+desc_custom_cpu_name=(
+    "Nombre personalizado del modelo de CPU en el cuadro de porcentaje de CPU."
+    " "
+    "Cadena vacía para desactivar."
+)
+
+desc_error_logging=(
+    "Habilita el registro de errores en"
+    "\"\$HOME/.config/bashtop/error.log\"."
+    " "
+    "El programa se reiniciará automáticamente al cambiar esta opción."
+    " "
+    "Verdadero o falso."
+)
+
+desc_proc_reversed=(
+    "Invertir el orden de clasificación."
+    " "
+    "Verdadero o falso."
+)
+
+desc_proc_gradient=(
+    "Mostrar degradado de color en la lista de procesos."
+    " "
+    "Verdadero o Falso."
+)
+
+desc_disks_filter=(
+    "Filtro opcional para discos mostrados."
+    " "
+    "Deben ser nombres de puntos de montaje."
+    "\"root\" reemplaza \"/\""
+    " "
+    "Separa múltiples valores con espacio."
+    "Ejemplo: \"root home external\""
+)
+
+desc_net_totals_reset=(
+    "Presiona ENTER para alternar entre reiniciar los totales"
+    "de carga y descarga de la red."
+    " "
+    "Muestra totales desde el inicio del sistema o"
+    "desde el reinicio del adaptador de red cuando está desactivado."
+)
+
+desc_proc_per_core=(
+    "Uso de procesos por núcleo."
+    " "
+    "Indica si el uso de CPU del proceso debe ser del núcleo"
+    "en el que se está ejecutando o el uso de la potencia de"
+    "CPU total disponible."
+    " "
+    "Si es verdadero y el proceso es multinúcleo,"
+    "el uso de CPU puede superar el 100%."
+)
+desc_update_check=(
+    "Comprobar actualizaciones."
+    " "
+    "Habilita la verificación de una nueva versión desde"
+    "https://github.com/girls-whocode/sar al iniciar."
+    " "
+    "Verdadero o Falso."
+)
+
+desc_hires_graphs=(
+    "Habilita gráficos de alta resolución."
+    " "
+    "Duplica la resolución horizontal de todos los gráficos."
+    "Con un costo de uso de CPU."
+    "Necesita reiniciar para surtir efecto."
+    " "
+    "Verdadero o Falso."
+)
+
+# Menu Items
+menu_options=(
+"┌─┐┌─┐┌─┐┬┌─┐┌┐┌┌─┐┌─┐"
+"│ │├─┘│  ││ ││││├┤ └─┐"
+"└─┘┴  └─┘┴└─┘┘└┘└─┘└─┘")
+menu_help=(
+"┌─┐┬ ┬┬ ┬┌┬┐┌─┐"
+"├─┤└┬┘│ │ ││├─┤"
+"┴ ┴ ┴ └─┘─┴┘┴ ┴")
+menu_quit=(
+"┌─┐┌─┐┬  ┬┬─┐"
+"└─┐├─┤│  │├┬┘"
+"└─┘┴ ┴┴─┘┴┴└─")
+
+menu_options_selected=(
+"╔═╗╔═╗╔═╗╦╔═╗╔╗╔╔═╗╔═╗"
+"║ ║╠═╝║  ║║ ║║║║║╣ ╚═╗"
+"╚═╝╩  ╚═╝╩╚═╝╝╚╝╚═╝╚═╝")
+menu_help_selected=(
+"╔═╗╦ ╦╦ ╦╔╦╗╔═╗"
+"╠═╣╚╦╝║ ║ ║║╠═╣"
+"╩ ╩ ╩ ╚═╝═╩╝╩ ╩")
+menu_quit_selected=(
+"╔═╗╔═╗╦  ╦╦═╗"
+"╚═╗╠═╣║  ║╠╦╝"
+"╚═╝╩ ╩╩═╝╩╩╚═")

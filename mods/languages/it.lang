@@ -1,0 +1,32 @@
+# Impostazioni
+lang_version="1.0"
+lang_name="Inglese Americano"
+lang_author="Jessica Brown"
+lang_update="2023-12-13"
+lang_unicode="UTF8"
+
+# Lingua
+lang_log_level="Livello di registro assegnato a"
+lang_log_exit="Uscita"
+lang_yes="sì"
+lang_no="no"
+
+# Stato di errore del registro
+lang_log_critical_fail="ERRORE CRITICO"
+lang_log_critical="CRITICO"
+lang_log_error="ERRORE"
+lang_log_warning="AVVISO"
+lang_log_notice="NOTIZIA"
+lang_log_info="INFORMAZIONE"
+lang_log_debug="DEBUG"
+lang_log_success="SUCCESSO"
+
+# Messaggi di debug
+
+# Messaggi di errore
+
+# Messaggi del terminale
+lang_sarah_welcome="Benvenuti e grazie per aver utilizzato SARAH - L'assistente remoto"
+lang_ssh_fail="Connessione SSH fallita su"
+lang_sudo_fail="Accesso sudo fallito su"
+lang_connection_success="Connessione riuscita su"

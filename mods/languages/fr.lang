@@ -1,0 +1,32 @@
+# Paramètres
+lang_version="1.0"
+lang_name="Anglais Américain"
+lang_author="Jessica Brown"
+lang_update="2023-12-13"
+lang_unicode="UTF8"
+
+# Langue
+lang_log_level="Niveau de journal assigné à"
+lang_log_exit="Sortie"
+lang_yes="oui"
+lang_no="non"
+
+# Statut d'erreur de journal
+lang_log_critical_fail="ÉCHEC CRITIQUE"
+lang_log_critical="CRITIQUE"
+lang_log_error="ERREUR"
+lang_log_warning="AVERTISSEMENT"
+lang_log_notice="AVIS"
+lang_log_info="INFO"
+lang_log_debug="DÉBOGAGE"
+lang_log_success="SUCCÈS"
+
+# Messages de débogage
+
+# Messages d'erreur
+
+# Messages de terminal
+lang_sarah_welcome="Bienvenue et merci d'utiliser SARAH - L'assistant à distance"
+lang_ssh_fail="Échec de la connexion SSH sur "
+lang_sudo_fail="Échec d'accès sudo sur "
+lang_connection_success="Connexion réussie sur "

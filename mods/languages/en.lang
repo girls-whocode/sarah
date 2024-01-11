@@ -1,0 +1,352 @@
+# Settings
+lang_version="1.0"
+lang_name="American English"
+lang_author="Jessica Brown"
+lang_update="2023-12-13"
+lang_unicode="UTF8"
+
+# Language
+lang_log_level="Log level assigned to"
+lang_log_exit="Exiting"
+lang_yes="yes"
+lang_no="no"
+lang_create_config="Creating configuration file"
+lang_create_load="Created and loaded configuration file"
+
+lang_title_mem="memory"
+lang_title_swap="swap"
+lang_mem_active_status="active"
+lang_mem_value_used="used"
+lang_mem_value_available="available"
+lang_mem_value_cached="cached"
+lang_mem_value_free="free"
+
+lang_cpu_action_send="Sending signal"
+lang_cpu_action_toPID="to PID"
+lang_cpu_up_title="up"
+
+lang_process_title="processes"
+lang_processes_title_close="close"
+lang_processes_title_status="Status"
+lang_processes_title_elapsed="Elapsed"
+lang_processes_title_parent="Parent"
+lang_processes_title_user="User"
+lang_processes_title_threads="Threads"
+lang_processes_title_memory="Memory"
+lang_processes_option_select="select"
+lang_processes_option_info="info"
+
+lang_net_title_byte="Byte"
+lang_net_title_bit="Bit"
+lang_net_title_total="Total"
+
+lang_title_disk="disks"
+lang_title_download="Download"
+lang_title_upload="Upload"
+
+# Log error status
+lang_log_critical_fail="CRITICAL FAIL"
+lang_log_critical="CRITICAL"
+lang_log_error="ERROR"
+lang_log_warning="WARNING"
+lang_log_notice="NOTICE"
+lang_log_info="INFO"
+lang_log_debug="DEBUG"
+lang_log_success="SUCCESS"
+
+# Debug messages
+lang_dbg_lang="Language set to "
+utf8_debug="UTF-8 locale found and loaded"
+utf8_changed_debug="SARAH changed your current locale to UTF-8"
+
+# Error messages
+config_error="ERROR: Could not set config dir"
+utf8_error="ERROR: No UTF-8 locale found"
+gnu_error="ERROR: Missing GNU coreutils"
+gnu_sed_error="ERROR: Missing GNU sed"
+log_create_error="ERROR: Failed to create log file"
+python_error="ERROR: Missing python3"
+python_module_error="ERROR: Missing python3 psutil module"
+temp_dir_create_error="ERROR: Failed setting up temp directory for psutil script"
+
+# Terminal messages
+lang_sarah_welcome="Welcome, and thank you for using SARAH - The remote assistant"
+lang_ssh_fail="SSH connection failed on "
+lang_sudo_fail="sudo access failed on "
+lang_connection_success="Successful connection on "
+
+# General Screen Messages
+lang_psutil_coprocess="Creating psutil coprocess..."
+lang_tool_status="Checking available tools..."
+lang_cpu_status="Checking CPU..."
+lang_size_calc="Calculating sizes..."
+lang_cpu_runner="Running CPU collection init..."
+lang_mem_runner="Running mem collection init..."
+lang_net_status="Checking network devices..."
+lang_update_check="Checking for updates..."
+lang_update_available="available!"
+lang_sarah_update="SARAH Update"
+lang_sarah_update_msg="New version of SARAH available\!\nCurrent version:"
+lang_new_update="New version"
+lang_download="Download at"
+lang_version="Version"
+lang_color_generate="Generating colors for theme..."
+lang_process_collection="Running process collection init..."
+lang_draw_screen="Drawing screen..."
+
+# Help
+lang_help_key_title="Key"
+lang_help_description_title="Description"
+lang_help_menu="Shows main menu."
+lang_help_options="Shows options."
+lang_help_window="Shows this window."
+lang_help_quit="Quits program."
+lang_help_selected="Selected"
+lang_help_ms="Add/Subtract 100ms to/from update timer."
+lang_help_process="Select in process list."
+lang_help_details="Show detailed information for selected process."
+lang_help_jump_page="Jump 1 page in process list."
+lang_help_jump_fl_page="Jump to first or last page in process list."
+lang_help_sort_col="Select previous/next sorting column."
+lang_help_np_net_device="Select previous/next network device."
+lang_help_toggle_tree="Toggle processes tree view"
+lang_help_rev_sort="Reverse sorting order in processes box."
+lang_help_input_string="Input a string to filter processes with."
+lang_help_clear="Clear any entered filter."
+lang_help_terminate="Terminate selected process with SIGTERM - 15."
+lang_help_kill="Kill selected process with SIGKILL - 9."
+lang_help_interrupt="Interrupt selected process with SIGINT - 2."
+lang_help_bug_report="For bug reporting and project updates, visit:"
+
+# Options
+lang_options_title="options"
+
+desc_color_theme=(
+    "Set SARAH color theme."
+    " "
+    "Choose between theme files located in"
+    "\"\$HOME/.config/bashtop/themes\" &"
+    "\"\$HOME/.config/bashtop/user_themes"
+    " "
+    "User themes are prefixed with \"*\"."
+    "\"Default\" for builtin default."
+    " "
+)
+
+if [[ -z $curled ]]; then 
+    desc_color_theme+=("Get more themes at:" "https://github.com/girls-whocode/sar") 
+else 
+    desc_color_theme+=("\e[1mPress ENTER to download the default themes." "Will overwrite changes made to the default" "themes if not copied to user_themes folder."); 
+fi
+
+desc_language_select=(
+    "Set SARAH language."
+    " "
+    "Use the arrow keys to select language.")
+    desc_default_editor=("Set default editor for editing config file."
+    " "
+    "Use the arrow keys to select editor."
+)
+
+desc_color_output=(
+    "Set color output."
+    " "
+    "True or false."
+)
+
+desc_ssh_username=(
+    "Set username for ssh connections."
+    " "
+    "Empty string to disable."
+)
+
+desc_ssh_identity=(
+    "Set identity file for ssh connections."
+    " "
+    "Empty string to disable."
+)
+
+desc_ssh_defult_port=(
+    "Set default port for ssh connections."
+    " "
+    "Empty string defaults to port 22."
+)
+
+desc_update_ms=(
+    "Update time in milliseconds."
+    "Recommended 2000 ms or above for better sample"
+    "times for graphs."
+    " "
+    "Increases automatically if set below internal"
+    "loops processing time."
+    " "
+    "Max value: 86400000 ms = 24 hours."
+)
+
+desc_use_psutil=(
+    "Enable the use of psutil python3 module for"
+    "data collection. Default on non Linux."
+    " "
+    "Program will automatically restart if changing"
+    "this setting to check for compatibility."
+    " "
+    "True or false."
+    " "
+    "Can only be switched off when on Linux."
+)
+
+desc_proc_sorting=(
+    "Processes sorting."
+    "Valid values are \"pid\", \"program\", \"arguments\","
+    "\"threads\", \"user\", \"memory\", \"cpu lazy\""
+    "\"cpu responsive\" and \"tree\"."
+    " "
+    "\"cpu lazy\" shows cpu usage over the lifetime"
+    "of a process."
+    " "
+    "\"cpu responsive\" updates sorting directly at a"
+    "cost of cpu time (unless using psutil)."
+    " "
+    "\"tree\" shows a tree structure of running"
+    "processes. (not available with psutil)"
+)
+
+desc_proc_tree=(
+    "Processes tree view."
+    " "
+    "Set true to show processes grouped by parents,"
+    "with lines drawn between parent and child"
+    "process."
+    " "
+    "True or false."
+)
+
+desc_check_temp=(
+    "Check cpu temperature."
+    " "
+    "True or false."
+    " "
+    "Only works if sensors, vcgencmd or osx-cpu-temp"
+    "commands is available."
+)
+
+desc_draw_clock=(
+    "Draw a clock at top of screen."
+    " "
+    "Formatting according to strftime, empty"
+    "string to disable."
+    " "
+    "\"%X\" locale HH:MM:SS"
+    "\"%H\" 24h hour, \"%I\" 12h hour"
+    "\"%M\" minute, \"%S\" second"
+    "\"%d\" day, \"%m\" month, \"%y\" year"
+)
+
+desc_background_update=(
+    "Update main ui when menus are showing."
+    " "
+    "True or false."
+    " "
+    "Set this to false if the menus is flickering"
+    "too much for a comfortable experience."
+)
+
+desc_custom_cpu_name=(
+    "Custom cpu model name in cpu percentage box."
+    " "
+    "Empty string to disable."
+)
+
+desc_error_logging=(
+    "Enable error logging to"
+    "\"\$HOME/.config/bashtop/error.log\""
+    " "
+    "Program will be automatically restarted if"
+    "changing this option."
+    " "
+    "True or false."
+)
+
+desc_proc_reversed=(
+    "Reverse sorting order."
+    " "
+    "True or false."
+)
+
+desc_proc_gradient=(
+    "Show color gradient in process list."
+    " "
+    "True or False."
+)
+
+desc_disks_filter=(
+    "Optional filter for shown disks."
+    " "
+    "Should be names of mountpoints."
+    "\"root\" replaces \"/\""
+    " "
+    "Separate multiple values with space."
+    "Example: \"root home external\""
+)
+
+desc_net_totals_reset=(
+    "Press ENTER to toggle network upload"
+    "and download totals reset."
+    " "
+    "Shows totals since system start or"
+    "network adapter reset when Off."
+)
+
+desc_proc_per_core=(
+    "Process usage per core."
+    " "
+    "If process cpu usage should be of the core"
+    "it's running on or usage of the total"
+    "available cpu power."
+    " "
+    "If true and process is multithreaded"
+    "cpu usage can reach over 100%.")
+    desc_update_check=( "Check for updates."
+    " "
+    "Enable check for new version from"
+    "https://github.com/girls-whocode/sar at start."
+    " "
+    "True or False."
+)
+
+desc_hires_graphs=(
+    "Enable high resolution graphs."
+    " "
+    "Doubles the horizontal resolution of all"
+    "graphs. At a cpu usage cost."
+    "Needs restart to take effect."
+    " "
+    "True or False."
+)
+
+# Menu Items
+menu_options=(
+"┌─┐┌─┐┌┬┐┬┌─┐┌┐┌┌─┐"
+"│ │├─┘ │ ││ ││││└─┐"
+"└─┘┴   ┴ ┴└─┘┘└┘└─┘")
+menu_help=(
+"┬ ┬┌─┐┬  ┌─┐"
+"├─┤├┤ │  ├─┘"
+"┴ ┴└─┘┴─┘┴  ")
+menu_quit=(
+"┌─┐ ┬ ┬ ┬┌┬┐"
+"│─┼┐│ │ │ │ "
+"└─┘└└─┘ ┴ ┴ ")
+
+menu_options_selected=(
+"╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗"
+"║ ║╠═╝ ║ ║║ ║║║║╚═╗"
+"╚═╝╩   ╩ ╩╚═╝╝╚╝╚═╝")
+menu_help_selected=(
+"╦ ╦╔═╗╦  ╔═╗"
+"╠═╣║╣ ║  ╠═╝"
+"╩ ╩╚═╝╩═╝╩  ")
+menu_quit_selected=(
+"╔═╗ ╦ ╦ ╦╔╦╗ "
+"║═╬╗║ ║ ║ ║  "
+"╚═╝╚╚═╝ ╩ ╩  ")

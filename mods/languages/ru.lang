@@ -1,0 +1,32 @@
+# Настройки
+lang_version="1.0"
+lang_name="Американский английский"
+lang_author="Джессика Браун"
+lang_update="2023-12-13"
+lang_unicode="UTF8"
+
+# Язык
+lang_log_level="Уровень журнала назначен"
+lang_log_exit="Выход"
+lang_yes="да"
+lang_no="нет"
+
+# Статусы ошибок журнала
+lang_log_critical_fail="КРИТИЧЕСКАЯ ОШИБКА"
+lang_log_critical="КРИТИЧЕСКАЯ"
+lang_log_error="ОШИБКА"
+lang_log_warning="ПРЕДУПРЕЖДЕНИЕ"
+lang_log_notice="УВЕДОМЛЕНИЕ"
+lang_log_info="ИНФОРМАЦИЯ"
+lang_log_debug="ОТЛАДКА"
+lang_log_success="УСПЕШНО"
+
+# Сообщения для отладки
+
+# Сообщения об ошибках
+
+# Сообщения для терминала
+lang_sarah_welcome="Добро пожаловать, и спасибо за использование SARAH - удаленного помощника"
+lang_ssh_fail="Сбой SSH-соединения на"
+lang_sudo_fail="Сбой доступа sudo на"
+lang_connection_success="Успешное соединение на"

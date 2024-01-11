@@ -1,0 +1,32 @@
+# 設定
+lang_version="1.0"
+lang_name="アメリカ英語"
+lang_author="ジェシカ・ブラウン"
+lang_update="2023-12-13"
+lang_unicode="UTF8"
+
+# 言語
+lang_log_level="ログレベルを割り当て"
+lang_log_exit="終了"
+lang_yes="はい"
+lang_no="いいえ"
+
+# ログエラーの状態
+lang_log_critical_fail="クリティカルエラー"
+lang_log_critical="クリティカル"
+lang_log_error="エラー"
+lang_log_warning="警告"
+lang_log_notice="通知"
+lang_log_info="情報"
+lang_log_debug="デバッグ"
+lang_log_success="成功"
+
+# デバッグメッセージ
+
+# エラーメッセージ
+
+# ターミナルメッセージ
+lang_sarah_welcome="ようこそ、SARAHを使用していただき、ありがとうございます - リモートアシスタント"
+lang_ssh_fail="SSH接続に失敗しました："
+lang_sudo_fail="sudoアクセスに失敗しました："
+lang_connection_success="接続に成功しました："

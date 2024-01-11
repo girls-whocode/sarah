@@ -1,0 +1,32 @@
+# 设置
+lang_version="1.0"
+lang_name="美式英语"
+lang_author="杰西卡·布朗"
+lang_update="2023-12-13"
+lang_unicode="UTF8"
+
+# 语言
+lang_log_level="日志级别分配给"
+lang_log_exit="退出"
+lang_yes="是"
+lang_no="否"
+
+# 日志错误状态
+lang_log_critical_fail="关键性失败"
+lang_log_critical="关键性"
+lang_log_error="错误"
+lang_log_warning="警告"
+lang_log_notice="通知"
+lang_log_info="信息"
+lang_log_debug="调试"
+lang_log_success="成功"
+
+# 调试消息
+
+# 错误消息
+
+# 终端消息
+lang_sarah_welcome="欢迎使用 SARAH - 远程助手，感谢您"
+lang_ssh_fail="SSH 连接失败于 "
+lang_sudo_fail="sudo 访问失败于 "
+lang_connection_success="成功连接至 "

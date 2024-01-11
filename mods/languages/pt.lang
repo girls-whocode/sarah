@@ -1,0 +1,32 @@
+# Configurações
+lang_version="1.0"
+lang_name="Inglês Americano"
+lang_author="Jessica Brown"
+lang_update="2023-12-13"
+lang_unicode="UTF8"
+
+# Idioma
+lang_log_level="Nível de log atribuído a"
+lang_log_exit="Saindo"
+lang_yes="sim"
+lang_no="não"
+
+# Status de erro de log
+lang_log_critical_fail="FALHA CRÍTICA"
+lang_log_critical="CRÍTICO"
+lang_log_error="ERRO"
+lang_log_warning="AVISO"
+lang_log_notice="AVISOS"
+lang_log_info="INFORMAÇÃO"
+lang_log_debug="DEPURAÇÃO"
+lang_log_success="SUCESSO"
+
+# Mensagens de depuração
+
+# Mensagens de erro
+
+# Mensagens do terminal
+lang_sarah_welcome="Bem-vindo e obrigado por usar SARAH - O assistente remoto"
+lang_ssh_fail="Falha na conexão SSH em"
+lang_sudo_fail="Falha no acesso sudo em"
+lang_connection_success="Conexão bem-sucedida em"

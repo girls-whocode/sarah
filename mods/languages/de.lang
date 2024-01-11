@@ -1,0 +1,54 @@
+# Einstellungen
+lang_version="1.0"
+lang_name="Deutsch"
+lang_author="Jessica Brown"
+lang_update="2023-12-13"
+lang_unicode="UTF8"
+
+# Sprache
+lang_log_level="Log-Level zugewiesen an"
+lang_log_exit="Beenden"
+lang_yes="ja"
+lang_no="nein"
+lang_create_config="Konfigurationsdatei wird erstellt"
+lang_create_load="Konfigurationsdatei erstellt und geladen"
+
+lang_title_mem="Speicher"
+lang_title_swap="Auslagerungsspeicher"
+lang_mem_active_status="aktiv"
+lang_mem_value_used="belegt"
+lang_mem_value_available="verfügbar"
+lang_mem_value_cached="zwischengespeichert"
+lang_mem_value_free="frei"
+
+lang_cpu_action_send="Signal senden"
+lang_cpu_action_toPID="an PID"
+lang_cpu_up_title="hoch"
+
+lang_processes_title_close="schließen"
+lang_processes_title_status="Status"
+lang_processes_title_elapsed="Verstrichen"
+lang_processes_title_parent="Übergeordnet"
+lang_processes_title_user="Benutzer"
+lang_processes_title_threads="Threads"
+lang_processes_title_memory="Speicher"
+lang_processes_option_select="auswählen"
+lang_processes_option_info="Info"
+
+lang_net_title_byte="Byte"
+lang_net_title_bit="Bit"
+lang_net_title_total="Gesamt"
+
+lang_title_disk="Festplatten"
+lang_title_download="Download"
+lang_title_upload="Upload"
+
+# Log-Fehlerstatus
+lang_log_critical_fail="KRITISCHER FEHLER"
+lang_log_critical="KRITISCH"
+lang_log_error="FEHLER"
+lang_log_warning="WARNUNG"
+lang_log_notice="HINWEIS"
+lang_log_info="INFO"
+lang_log_debug="DEBUG"
+lang_log_success="ERFOLG"
