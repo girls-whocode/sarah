@@ -132,7 +132,7 @@ desc_color_theme=(
 )
 
 if [[ -z $curled ]]; then 
-    desc_color_theme+=("Obtén más temas en:" "https://github.com/girls-whocode/sar") 
+    desc_color_theme+=("Obtén más temas en:" "https://github.com/girls-whocode/sarah") 
 else 
     desc_color_theme+=("\e[1mPresiona ENTER para descargar los temas predeterminados." "Sobrescribirá los cambios realizados en los temas predeterminados" "si no se copian a la carpeta user_themes."); 
 fi

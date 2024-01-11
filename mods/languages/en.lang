@@ -134,7 +134,7 @@ desc_color_theme=(
 )
 
 if [[ -z $curled ]]; then 
-    desc_color_theme+=("Get more themes at:" "https://github.com/girls-whocode/sar") 
+    desc_color_theme+=("Get more themes at:" "https://github.com/girls-whocode/sarah") 
 else 
     desc_color_theme+=("\e[1mPress ENTER to download the default themes." "Will overwrite changes made to the default" "themes if not copied to user_themes folder."); 
 fi

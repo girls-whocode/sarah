@@ -271,12 +271,12 @@ function init_() {
 		unset notifier; 
 	fi
 
-	#* Check if newer version of SARAH is available from https://github.com/girls-whocode/sar
+	#* Check if newer version of SARAH is available from https://github.com/girls-whocode/sarah
 	if [[ -n $curled && $update_check == "true" ]]; then
 		debug "Checking for updates"
 		print -bg "#00" -fg "#30ff50" -r 1 -t "√"
 		print -m $(( (tty_height/2-3)+stx++ )) 0 -bg "#00" -fg "#cc" -c -b "${lang_update_check}"
-		if ! get_value -v git_version -ss "$(curl -m 4 --raw -r 0-5000 https://raw.githubusercontent.com/girls-whocode/sar/main/bin/data/sarah.version.sh 2>/dev/null)" -k "sarah_version=" -r "[^0-9.]"; then 
+		if ! get_value -v git_version -ss "$(curl -m 4 --raw -r 0-5000 https://raw.githubusercontent.com/girls-whocode/sarah/main/bin/data/sarah.version.sh 2>/dev/null)" -k "sarah_version=" -r "[^0-9.]"; then 
 			debug "Failed to get git_version from github"
 			unset git_version; 
 		fi
@@ -291,7 +291,7 @@ function init_() {
 		if [[ -n $notifier ]]; then
 			debug "Sending update notification"
 			notify-send -u normal\
-			"${lang_sarah_update}" "${lang_sarah_update_msg} ${version}\n${lang_new_update}: ${git_version}\n${lang_download} https://github.com/girls-whocode/sar"\
+			"${lang_sarah_update}" "${lang_sarah_update_msg} ${version}\n${lang_new_update}: ${git_version}\n${lang_download} https://github.com/girls-whocode/sarah"\
 			-i face-glasses -t 10000
 		fi
 	else

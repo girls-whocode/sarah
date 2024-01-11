@@ -99,7 +99,7 @@ desc_color_theme=(
 )
 
 if [[ -z $curled ]]; then 
-    desc_color_theme+=("الحصول على مزيد من السمات على:" "https://github.com/girls-whocode/sar") 
+    desc_color_theme+=("الحصول على مزيد من السمات على:" "https://github.com/girls-whocode/sarah") 
 else 
     desc_color_theme+=("\e[1mاضغط ENTER لتنزيل السمات الافتراضية." "سيتم الكتابة فوق التغييرات التي تم إجراؤها على السمات الافتراضية" "إذا لم يتم نسخها إلى مجلد user_themes."); 
 fi
