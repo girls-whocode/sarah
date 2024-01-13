@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-function create_box() { #? Draw a box with an optional title at given location
+# Draw a box with an optional title at given location
+function create_box() {
 	local width height col line title ltype hpos vpos i hlines vlines color line_color c_rev=0 box_out ext_var fill
 	until (($#==0)); do
 		case $1 in
@@ -912,6 +913,7 @@ function sarah_draw_bg() {
 	unset boxes_out
 	for this_box in ${sarah_box[boxes]}; do
 		create_box -v boxes_out -col ${box[${this_box}_col]} -line ${box[${this_box}_line]} -width ${box[${this_box}_width]} -height ${box[${this_box}_height]} -fill -lc "${box[${this_box}_color]}" -title ${this_box}
+		debug "Box ${this_box} created"
 	done
 
 }
@@ -947,7 +949,7 @@ function bashtop_draw_bg() {
 	draw_update_string $1
 }
 
-function draw_cpu() { #? Draw cpu and core graphs and print percentages
+function draw_navigation() { #? Draw cpu and core graphs and print percentages
 	local cpu_out i name cpu_p_color temp_color y pt_line pt_col p_normal_color="${theme[main_fg]}" threads=${cpu[threads]}
 	local meter meter_size meter_width temp_var cpu_out_var core_name temp_name temp_width
 
@@ -1058,7 +1060,7 @@ function draw_cpu() { #? Draw cpu and core graphs and print percentages
 
 }
 
-function draw_mem() { #? Draw mem, swap and disk statistics
+function draw_remote() { #? Draw mem, swap and disk statistics
 
 	if ((mem[counter]>0 & resized==0)); then return; fi
 
@@ -1196,7 +1198,7 @@ function draw_mem() { #? Draw mem, swap and disk statistics
 
 }
 
-function draw_processes() { #? Draw processes and values to screen
+function draw_information() { #? Draw processes and values to screen
 	local argument="$1"
 	if [[ -n $skip_process_draw && $argument != "now" ]]; then return; fi
 	local line=${box[processes_line]} col=${box[processes_col]} width=${box[processes_width]} height=${box[processes_height]} out_line y=1 fg_step_r=0 fg_step_g=0 fg_step_b=0 checker=2 page_string sel_string
@@ -1468,7 +1470,7 @@ function draw_processes() { #? Draw processes and values to screen
 
 }
 
-function draw_net() { #? Draw net information and graphs to screen
+function draw_status() { #? Draw net information and graphs to screen
 	local net_out argument=$1
 	if [[ -n ${net[no_device]} ]]; then return; fi
 	if [[ -n $skip_net_draw && $argument != "now" ]]; then return; fi
@@ -1532,11 +1534,12 @@ function draw_net() { #? Draw net information and graphs to screen
 	if [[ $argument == "now" ]]; then echo -en "${download_graph[*]}${upload_graph[*]}${net_out}"; fi
 }
 
-function draw_clock() { #? Draw a clock at top of screen
+# Draw a clock at top of screen
+function draw_clock() {
 	if [[ -z $draw_clock ]]; then return; fi
 	if [[ $resized -gt 0 && $resized -lt 5 ]]; then unset clock_out; return; fi
 	local width=${box[cpu_width]} color=${box[cpu_color]} old_time_string="${time_string}"
-	#time_string="$(date ${draw_clock})"
+	# time_string="$(date ${draw_clock})"
 	printf -v time_string "%(${draw_clock})T"
 	if [[ $old_time_string != "$time_string" || -z $clock_out ]]; then
 		unset clock_out
@@ -1565,6 +1568,7 @@ function resized() {
 			echo -en "${clear_screen}"
 			create_box -w 30 -h 3 -c 1 -l 1 -lc "#EE2020" -title "resizing"
 			print -jc 28 -fg ${theme[title]} "New size: ${tty_width}x${tty_height}"
+			info "Resized screen to ${tty_width}x${tty_height}"
 			${sleep} 0.2
 			if [[ $(${stty} size) != "$tty_height $tty_width" ]]; then winches=0; fi
 		fi

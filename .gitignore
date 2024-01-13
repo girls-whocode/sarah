@@ -1,0 +1,6 @@
+.vscode
+var/cache
+var/conf/sa.*
+var/conf/user_themes
+var/logs
+bin/data/host_key.conf

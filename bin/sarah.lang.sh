@@ -37,14 +37,17 @@ function language_loader() {
     if [ -z ${language} ]; then
         # Language was not defined
         source "${script_dir}/mods/languages/en.lang"
+        debug "No language specified, defaulting to English"
     else
         # Language was defined, does it exist
         if [ -e "${script_dir}/mods/languages/${language}.lang" ]; then
             # It exists
             source "${script_dir}/mods/languages/${language}.lang"
+            debug "Language ${language} was specified, loaded"
         else
             # It doesn't :( load English
             source "${script_dir}/mods/languages/en.lang"
+            debug "Language ${language} was specified, but does not exist, defaulting to English"
         fi
     fi
     # Languages are loaded, we can now start translations into other languages

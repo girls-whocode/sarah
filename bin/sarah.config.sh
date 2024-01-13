@@ -9,7 +9,6 @@ function config() {
         if [[ -d "${wkr_config_dir}" && -w "${wkr_config_dir}" ]] || mkdir -p "${wkr_config_dir}"; then
             # shellcheck source=/dev/null
             if [[ -e "${wkr_config_dir}/${wkr_config}" ]]; then
-                info "Configuration file found loading ${wkr_config}"
                 source "${wkr_config_dir}/${wkr_config}"
 
                 # Initalize the log levels
@@ -19,14 +18,12 @@ function config() {
         else
             #* If anything goes wrong turn off all writing to filesystem
             echo "${config_error}"
-            critical ${config_error}
             wkr_config_dir="/dev/null"
             config_file="/dev/null"
             error_logging="false"
             unset 'save_array[@]'
         fi
     else
-        info "${lang_create_config} ${wkr_config}"
         this_file="$(${realpath} "$0")"
         echo "# ${app_name} v${sarah_version} automated configuration file - This file was automatically created, you may edit these settings or use the menu in ${app_name}" > "${wkr_config_dir}/${wkr_config}"
 

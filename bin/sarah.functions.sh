@@ -4,7 +4,7 @@
 function preflight() {
     # Set correct names for GNU tools depending on OS
     if [[ $system != "Linux" ]]; then
-        debug "Linux detected, using GNU tools"
+        debug "Linux not detected, using GNU tools"
         tool_prefix="g";
     fi
 
@@ -67,10 +67,25 @@ function preflight() {
     trap 'resume_' SIGCONT
     trap 'failed_pipe=1; time_left=0' PIPE
 
-    #* If we have been sourced by another shell, quit. Allows sourcing only function definition.
-    [[ "${#BASH_SOURCE[@]}" -gt 1 ]] && { return 0; }
+    # If using bash version 5, set timestamps with EPOCHREALTIME variable
+    if [[ -n $EPOCHREALTIME ]]; then
+        get_ms() { #? Set given variable to current epoch millisecond with EPOCHREALTIME varialble
+            local -n ms_out=$1
+            ms_out=$((${EPOCHREALTIME/[.,]/}/1000))
+        }
+
+    # Else use date command
+    else
+        get_ms() { #? Set given variable to current epoch millisecond with date command
+            local -n ms_out=$1
+            ms_out=""
+            read ms_out < <(${date} +%s%3N)
+        }
+    fi
 
     debug "Preflight complete"
+    #* If we have been sourced by another shell, quit. Allows sourcing only function definition.
+    [[ "${#BASH_SOURCE[@]}" -gt 1 ]] && { return 0; }
 }
 
 function sleep_() { #? Restore terminal options, stop and send to background if caught SIGTSTP (ctrl+z)
@@ -93,7 +108,8 @@ function resume_() { #? Set terminal options and resume if caught SIGCONT ('fg' 
 	fi
 }
 
-function pause_() { #? Pause input and draw a darkened version of main ui
+# Pause input and draw a darkened version of main ui
+function pause_() {
 	local pause_out ext_var
 	if [[ -n $1 && $1 != "off" ]]; then local -n pause_out=${1}; ext_var=1; fi
 	if [[ $1 != "off" ]]; then
@@ -228,8 +244,12 @@ function init_() {
 		for banner_line in "${banner[@]}"; do
 			#* Read banner array letter by letter to set correct color for filled vs outline characters
 			while read -rN1 letter; do
-				if [[ $letter == "█" ]]; then b_color="${banner_colors[$y]}"
-				else b_color="#$((80-y*6))"; fi
+				if [[ $letter == "█" ]]; then 
+					b_color="${banner_colors[$y]}"
+				else 
+					b_color="#$((80-y*6))"; 
+				fi
+				
 				if [[ $letter == " " ]]; then
 					print -v banner_out[y] -r 1
 				else
@@ -295,7 +315,7 @@ function init_() {
 			-i face-glasses -t 10000
 		fi
 	else
-		info "No new version available"
+		info "You are running the latest version"
 		print -v banner_out_up -r 37
 	fi
 
@@ -1146,7 +1166,7 @@ function process_input() { #? Process keypresses for main ui
 					proc[selected]=0
 					unset 'proc[detailed_name]' 'detail_history[@]' 'detail_mem_history[@]' 'proc[detailed_killed]'
 					calc_sizes
-					collect_processes now
+					# collect_processes now
 				elif ((proc[detailed]==1 & proc[detailed_pid]!=proc[selected_pid])); then
 					proc[detailed]=0
 					proc[detailed_change]=1
@@ -1167,7 +1187,6 @@ function process_input() { #? Process keypresses for main ui
 			;;
 			page_down) #* Move down one page in process box
 				if ((proc[start]<(${#proc_array[@]}-1)-p_height)); then
-					if ((proc[start]==1)) && [[ $use_psutil == false ]]; then collect_processes now; fi
 					proc[start]=$(( proc[start]+p_height ))
 					if (( proc[start]>(${#proc_array[@]})-p_height )); then proc[start]=$(( (${#proc_array[@]})-p_height )); fi
 					proc[page_change]=1
@@ -1181,7 +1200,6 @@ function process_input() { #? Process keypresses for main ui
 					proc[page_change]=1
 			;;
 			end) #* Go to last page in process box
-					if ((proc[selected]==0)) && [[ $use_psutil == false ]]; then collect_processes now; fi
 					proc[start]=$(((${#proc_array[@]}-1)-p_height))
 					proc[page_change]=1
 			;;
@@ -1253,12 +1271,12 @@ function process_input() { #? Process keypresses for main ui
 
 	if [[ -n $filter_change ]]; then
 		unset filter_change
-		collect_processes now
+		# collect_processes now
 		proc[filter_change]=1
-		draw_processes now
+		# draw_processes now
 	elif [[ ${proc[page_change]} -eq 1 || ${proc[detailed_change]} == 1 ]]; then
 		if ((proc[selected]==0)); then unset 'proc[selected_pid]'; proc[detailed_change]=1; fi
-		draw_processes now
+		# draw_processes now
 	fi
 
 	#* Subtract time since input start from time left if timer is interrupted
@@ -1271,7 +1289,7 @@ function process_input() { #? Process keypresses for main ui
 function collect_and_draw() { 
 	# Run all collect and draw functions
 	local task_int=0 input_runs
-	for task in processes cpu mem net; do
+	for task in navigation information status remote; do
 		((++task_int))
 		if [[ -n $pause_screen && -n ${saved_key[0]} ]]; then
 			return
@@ -1282,9 +1300,9 @@ function collect_and_draw() {
 				unset late_update
 			done
 		fi
-		collect_${task}
+		# collect_${task}
 		if get_key -save && [[ -z $pause_screen ]]; then process_input; fi
-		draw_${task}
+		# draw_${task}
 		if get_key -save && [[ -z $pause_screen ]]; then process_input; fi
 		draw_clock "$1"
 		if ((resized>0 & resized<task_int)) || [[ -n $failed_pipe || -n $py_error ]]; then return; fi

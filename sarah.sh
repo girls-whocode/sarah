@@ -17,13 +17,13 @@
 
 # Declare initial variables
 declare app_name app_ver time_left timestamp_start timestamp_end timestamp_input_start timestamp_input_end
-declare script_dir time_string prev_screen pause_screen filter input_to_filter curled git_version esc_character 
+declare script_dir time_string prev_screen pause_screen filter input_to_filter curled git_version
 declare wkr_user tab backspace sleepy late_update skip_process_draw winches quitting theme_int notifier 
-declare wkr_config_wkr_config config_file dir log_level logging log_date log_file saved_stty resized
+declare wkr_config config_file dir log_level logging log_date log_file saved_stty resized
 declare size_error clock tty_width tty_height hex swap_on draw_out esc_character boxes_out last_screen 
 declare clock_out update_string sleeping
 declare -A log_levels
-declare -a disks_free disks_total disks_name disks_free_percent saved_key themes nic_list old_procs menu_options 
+declare -a saved_key themes menu_options 
 declare -a menu_help menu_quit options_array folders
 declare -x LC_MESSAGES="C" LC_NUMERIC="C" LC_ALL=""
 
@@ -34,14 +34,30 @@ wkr_config_dir="${script_dir}/var/conf"
 wkr_config="sa.${wkr_user}.conf"
 config_file="${config_dir}/${wkr_config}"
 log_date=$(date +"%Y-%m-%d")
+trace_time=$(date +"%H-%M-%S")
 log_file="${script_dir}/var/logs/${log_date}.log"
+trace_file="${script_dir}/var/logs/trace-${log_date}-${trace_time}.log"
 log_levels=(["die"]=1 ["critical"]=1 ["error"]=2 ["warning"]=3 ["notice"]=4 ["info"]=5 ["debug"]=6)
 log_level=${log_levels["debug"]}
 logging="warning"
 resized=1
 swap_on=1
 hex="16#"
-options_array=("color_theme" "language" "default_editor" "color_output" "username" "identity_file" "port" "logging" "update_ms" "use_psutil" "proc_sorting" "proc_tree" "check_temp" "draw_clock" "background_update" "custom_cpu_name" "proc_per_core" "proc_reversed" "proc_gradient" "disks_filter" "hires_graphs" "net_totals_reset" "update_check" "error_logging")
+options_array=(
+	"color_theme" 
+	"language" 
+	"default_editor" 
+	"color_output" 
+	"username" 
+	"identity_file" 
+	"port"
+	"logging" 
+	"update_ms" 
+	"draw_clock" 
+	"background_update" 
+	"error_logging"
+	"update_check"
+)
 sleeping=0 
 folders=(
     "${script_dir}/bin"
@@ -74,8 +90,7 @@ update_ms="2500" # Update time in milliseconds, increases automatically if set b
 draw_clock="%X" # Draw a clock at top of screen, formatting according to strftime, empty string to disable
 background_update="true" # Update main ui when menus are showing, set this to false if the menus is flickering too much for comfort
 error_logging="true" # Enable error logging to "$HOME/.config/bashtop/error.log", "true" or "false"
-update_check="false" # Enable check for new version from github.com/aristocratos/bashtop at start
-hires_graphs="false" # Enable graphs with double the horizontal resolution, increases cpu usage
+update_check="true" # Enable check for new version from github.com/aristocratos/bashtop at start
 
 aaz_config() { : ; } #! Do not remove this line!
 #? End default variables-------------------------------------------------------------------------------->
@@ -112,6 +127,37 @@ fi
 shopt -qu failglob nullglob
 shopt -qs extglob globasciiranges globstar
 
+# Do all of the required folders exist? If they don't exist then they need to be created
+# Usually some folders will not exist when the directories are empty and using GIT
+for folder in "${folders[@]}"; do
+    if [ ! -e "${folder}" ]; then
+        # This can only be in English because the language file cannot be loaded yet
+        mkdir -p "./${folder}" || { echo "Error: Failed to create directory ${folder}"; exit 1; }
+    fi
+done
+
+# Source all bin, mod, languages and theme files
+for folder in "${folders[@]}"; do
+    if [[ -d ${folder} ]]; then
+        for file in "${folder}"/sarah.*; do
+            if [[ -f "${file}" ]]; then
+                # This can only be in English because the language file cannot be loaded yet
+                source "${file}" || { echo "Error: Failed to source file ${file}"; exit 1; }
+            fi
+        done
+    fi
+done
+
+# Start the actual program by calling the config to create or load the user's configuration
+config
+# Load the appropriate language file.
+language_loader
+utf8
+
+# Logging and languages are now available
+# Start the preflight and set additional vars
+preflight
+
 #* Check for UTF-8 locale and set LANG variable if not set
 if [[ ! $LANG =~ UTF-8 ]]; then
 	if [[ -n $LANG && ${LANG::1} != "C" ]]; then old_lang="${LANG%.*}"; fi
@@ -137,40 +183,10 @@ if [[ ! $LANG =~ UTF-8 ]]; then
 	unset old_lang set_lang first_lang set_lang_search set_lang_first
 fi
 
-# Do all of the required folders exist? If they don't exist then they need to be created
-# Usually some folders will not exist when the directories are empty and using GIT
-for folder in "${folders[@]}"; do
-    if [ ! -e "${folder}" ]; then
-        # This can only be in English because the language file cannot be loaded yet
-        mkdir -p "./${folder}" || { echo "Error: Failed to create directory ${folder}"; exit 1; }
-    fi
-done
-
-# Source all bin, mod, languages and theme files
-for folder in "${folders[@]}"; do
-    if [[ -d ${folder} ]]; then
-        for file in "${folder}"/sarah.*; do
-            if [[ -f "${file}" ]]; then
-                # This can only be in English because the language file cannot be loaded yet
-                source "${file}" || { echo "Error: Failed to source file ${file}"; exit 1; }
-            fi
-        done
-    fi
-done
-
-# Start the preflight and set additional vars
-preflight
-
-# Start the actual program by calling the config to create or load
-# Load the appropriate language file
-# Load the appropriate theme file
-config
-language_loader
-utf8
-
 # Call init function
 init_
 # sarah
+
 
 # Quit cleanly even if false starts being true...
 quit_

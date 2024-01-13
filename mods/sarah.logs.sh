@@ -73,7 +73,8 @@ function fatal() {
   exit 1; 
 }
 
-function size_error_msg() { #? Shows error message if terminal size is below 80x25
+# Shows error message if terminal size is below 80x25
+function size_error_msg() {
 	local width=$tty_width
 	local height=$tty_height
 	echo -en "${clear_screen}"
@@ -83,7 +84,8 @@ function size_error_msg() { #? Shows error message if terminal size is below 80x
 	while [[ $(${stty} size) == "$tty_height $tty_width" ]]; do ${sleep} 0.2; if [[ -n $quitting ]]; then quit_; fi ; done
 }
 
-function traperr() { #? Function for reporting error line numbers
+# Function for reporting error line numbers
+function traperr() {
 	local match len trap_muted err="${BASH_LINENO[0]}"
 
 	len=$((${#trace_array[@]}))
@@ -91,9 +93,11 @@ function traperr() { #? Function for reporting error line numbers
 		while ((len>=${#trace_array[@]}-2)); do
 			if [[ $err == "${trace_array[$((len--))]}" ]]; then ((++match)) ; fi
 		done
+
 		if ((match==2 & len != -2)); then return
-		elif ((match>=1)); then trap_muted="(MUTED!)"
+		elif ((match>=1)); then trap_muted="[MUTED]"
 		fi
+
 	fi
 	if ((len>100)); then unset 'trace_array[@]'; fi
 	trace_array+=("$err")
@@ -133,18 +137,19 @@ function logging_level() {
 if [ ! -e "${log_file}" ]; then
     touch ${log_file} || { echo "${log_create_error} ${log_file}"; exit 1; }
 	log "================================================== ${app_name} LOGGING for ${log_date} =================================================="
-  log "New instance of ${app_name} version: ${sarah_version} Pid: $$"
+else
+  log "================================================== ${app_name} new instance =================================================="
 fi
+
+info "New instance of ${app_name} version: ${sarah_version} Pid: $$"
 
 #* Set up error logging to file if enabled
 if [[ $error_logging == true ]]; then
   set -o errtrace
   trap 'traperr' ERR
-  info "New instance of ${app_name} version: ${sarah_version} Pid: $$"
-
   exec 2>>"${log_file}"
   if [[ $1 == "--debug" ]]; then
-    exec 19>>"${config_dir}/tracing.log"
+    exec 19>>"${trace_file}"
     BASH_XTRACEFD=19
     set -x
   fi
